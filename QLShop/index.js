@@ -27,6 +27,14 @@ app.engine('hbs', expressHandlebars.engine ({
 
 app.set('view engine', 'hbs');
 
+// Route để tạo bảng bằng Sequelize
+app.get('/createTables', (req, res) => {
+    let models = require('./models');
+    models.sequelize.sync().then(() => {
+        res.send('tables created!');
+    });
+});
+
 app.get('/', (req, res) => {
     res.render('index');  // se lay index.hbs do vao {{{ body }}} trong main.hbs
 });
