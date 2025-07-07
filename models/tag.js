@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       // belongsToMany quan hệ 1 N N
       // models.Product là model mà bạn đang thiết lập quan hệ với
+      // thiết lâp quan hệ của bảng trung gian giữa 2 bảng
       Tag.belongsToMany(models.Product, { 
         through: 'ProductTag', // dùng bảng trung gian là ProductTag 
         foreignKey: 'tagId', // khóa ngoại tham chiếu đến bảng Tag
