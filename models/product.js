@@ -12,9 +12,12 @@ module.exports = (sequelize, DataTypes) => {
 
     // thiết lập mối quan hệ
     static associate(models) {
-      Product.hasMany(models.Image, { foreignKey: 'productId'}); // 1 sp có nhiều hình ảnh
-      Product.belongsTo(models.Brand, { foreignKey: 'brandId'}); // 1 sp chỉ có 1 nhãn hàng
+      Product.hasMany(models.Image, { foreignKey: 'productId' }); // 1 sp có nhiều hình ảnh
 
+      Product.belongsTo(models.Brand, { foreignKey: 'brandId' }); // 1 sp chỉ có 1 nhãn hàng
+      Product.belongsTo(models.Category, { foreignKey: 'categoryId' }); // 1 sp chỉ có 1 loại
+
+      // thiết lập quan hệ của bảng trung gian giữa 2 bảng
       Product.belongsToMany( models.Tag, {
         through: 'ProductTag',
         foreignKey: 'productId',
